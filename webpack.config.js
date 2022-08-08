@@ -1,4 +1,14 @@
 const Encore = require('@symfony/webpack-encore');
+const { VueLoaderPlugin } = require("vue-loader");
+
+if (!Encore.isRuntimeEnvironmentConfigured()) {
+    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+}
+
+Encore.configureDefinePlugin(options => {
+    options.__VUE_OPTIONS_API__ = true;
+    options.__VUE_PROD_DEVTOOLS__ = Encore.isProduction();
+});
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -32,6 +42,15 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
+    .enableVueLoader(() => {}, {
+        runtimeCompilerBuild: false
+    })
+    .addPlugin(new VueLoaderPlugin())
+    .addLoader({
+        test: /\.vue$/i,
+        loader: 'vue-loader'
+    })
+
     /*
      * FEATURE CONFIG
      *
@@ -56,7 +75,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -66,10 +85,12 @@ Encore
 
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
-
+    .enableIntegrityHashes(Encore.isProduction())
+    .configureImageRule({ type: 'asset' })
+    .configureFontRule({ type: 'asset' })
+    
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();
