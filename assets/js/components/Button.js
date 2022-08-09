@@ -6,7 +6,7 @@ export default {
         }
     },
     template: `
-        <button @click="pressed">
+        <button @click="pressed" class="bg-white hover:bg-gray-200 duration-150 text-black px-2">
             Click
         </button>
     `
