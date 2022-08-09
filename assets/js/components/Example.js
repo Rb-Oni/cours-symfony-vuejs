@@ -17,9 +17,9 @@ export default {
     },
     template: `
         <div class="bg-orange-500 text-white py-6">
-            <p class="mb-4">
+            <h2 class="mb-4 text-3xl font-bold">
             Le bouton ci-dessous a été cliqué {{ counter }} fois.
-            </p>
+            </h2>
             <btn @pressed="add"></btn>
         </div>
     `
