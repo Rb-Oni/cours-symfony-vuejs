@@ -1,7 +1,7 @@
 import btn from './Button';
 
 export default {
-    name: 'Example',
+    name: 'Jumbotron',
     data() {
         return {
             counter: 0

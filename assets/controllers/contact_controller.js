@@ -1,6 +1,6 @@
 import { Controller } from '@hotwired/stimulus';
 import { createApp } from 'vue/dist/vue.esm-bundler';
-import Jumbotron from '../js/components/Jumbotron'
+import Cours from '../js/components/Cours'
 import '../styles/app.css'
 
 export default class extends Controller {
@@ -11,11 +11,11 @@ export default class extends Controller {
                 return {}
             },
             components: {
-                Jumbotron
+                Cours
             },
             template: `
                 <div class="max-w-screen-lg shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
-                    <jumbotron></jumbotron>
+                    <cours></cours>
                 </div>
             `
         });
