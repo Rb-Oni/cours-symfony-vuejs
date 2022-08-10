@@ -1,5 +1,5 @@
 export default {
-    name: 'Cours',
+    name: 'Count',
     data() {
         return {
             count: 0,
@@ -23,7 +23,7 @@ export default {
     template: `
         <div class="bg-green-500 text-white py-6">
             <h2 class="mb-4 text-3xl font-bold">
-            Test
+            Count
             </h2>
             <p>Counter : {{ count }}</p>
             <button @click="start()" class="bg-white hover:bg-gray-200 text-black duration-150 font-bold py-2 px-6 shadow rounded-md">Start</button>

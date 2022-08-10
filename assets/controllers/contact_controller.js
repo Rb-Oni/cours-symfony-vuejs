@@ -1,6 +1,7 @@
 import { Controller } from '@hotwired/stimulus';
 import { createApp } from 'vue/dist/vue.esm-bundler';
-import Cours from '../js/components/Cours'
+import Count from '../js/components/Count'
+import UserInput from '../js/components/UserInput'
 import '../styles/app.css'
 
 export default class extends Controller {
@@ -11,11 +12,13 @@ export default class extends Controller {
                 return {}
             },
             components: {
-                Cours
+                Count,
+                UserInput
             },
             template: `
                 <div class="max-w-screen-lg shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
-                    <cours></cours>
+                    <count></count>
+                    <userInput></userInput>
                 </div>
             `
         });
