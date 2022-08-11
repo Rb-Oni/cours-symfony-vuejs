@@ -1,5 +1,5 @@
 export default {
-    name: 'Count',
+    name: 'Watcher',
     data() {
         return {
             count: 0,

@@ -21,7 +21,7 @@ export default class extends Controller {
                 ShowingContent,
                 List,
                 ClassStyle,
-                Watcher,
+                Watcher
             },
             template: `
                 <div class="max-w-screen-lg shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
