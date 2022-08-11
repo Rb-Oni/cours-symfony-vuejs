@@ -26,10 +26,10 @@ export default {
     template: `
         <div class="bg-red-500 text-white py-6">
             <h2 class="mb-4 text-3xl font-bold">
-            User Input
+            Showing Content
             </h2>
             <form @submit.prevent="checkForm()" class="text-black">
-                <div class="flex flex-col mb-4">
+                <div class="flex flex-col mb-4 w-fit mx-auto">
                     <label for="">Your Favorite Color</label>
                     <input type="text" v-model="color"/>
                 </div>
