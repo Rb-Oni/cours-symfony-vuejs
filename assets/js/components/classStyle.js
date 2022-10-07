@@ -21,7 +21,7 @@ export default {
             </h2>
             <form action="" :class="{'was-validated': formWasValidated}" @submit.prevent="submitForm($event.target)" novalidate>
                 <div>
-                    <label>Email</label>
+                    <label class="flex flex-col">Email</label>
                     <input type="email" class="text-black" v-model="email" required/>
                     <div class="invalid-feedback">Please enter a valid email address.</div>
                     <div class="valid-feedback">Thanks !</div>

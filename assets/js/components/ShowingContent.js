@@ -14,11 +14,11 @@ export default {
             }
             this.favoriteMessage = 'That is not my favorite color';
 
-            if (this.color == 'blue') {
+            if (this.color === 'blue') {
                 this.favoriteMessage = 'That is my favorite, too !';
             }
 
-            this.showMessage = this.color == 'blue';
+            this.showMessage = this.color === 'blue';
         }
     },
     components: {
