@@ -24,9 +24,10 @@ class MovieController extends AbstractController
         // get the total number of movies
         $totalMovie = count($paginatedResult);
 
+        $movies = [];
         // Use the Paginator iterator
         foreach ($paginatedResult as $movie) {
-            $movies = $movie->getTitle();
+            $movies[] = $movie->getTitle();
         }
 
         return new JsonResponse($movies);

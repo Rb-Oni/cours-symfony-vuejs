@@ -20,7 +20,7 @@ export default {
       <section class="bg-blue-500 text-white py-6">
         <h2 class="mb-4 text-3xl font-bold">Titles : </h2>
         <ul>
-          <li  class="text-2xl">{{ movies }}</li>
+          <li class="text-2xl" v-for="movie in movies">{{ movie }}</li>
         </ul>
       </section>
     `

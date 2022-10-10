@@ -60,11 +60,10 @@ class MovieRepository extends ServiceEntityRepository
         return $moviesArray;
     }
 
-    public function getPaginatedMovies($page = 1, $moviesPerPage = 9)
+    public function getPaginatedMovies($page = 1, $moviesPerPage = 10)
     {
-
         $query = $this->createQueryBuilder('m')
-            ->orderBy('m.title', 'DESC')
+            ->orderBy('m.id', 'DESC')
             ->getQuery();
 
         $paginator = new Paginator($query);

@@ -15,7 +15,7 @@ export default class extends Controller {
             },
             template: `
               <div class="max-w-screen-lg shadow-2xl rounded-lg mx-auto text-center py-12 mt-4">
-              <movie></movie>
+                <movie></movie>
               </div>
             `
         });
