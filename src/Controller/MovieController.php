@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,20 @@ class MovieController extends AbstractController
         return $this->render('movie/index.html.twig');
     }
 
-    #[Route('/api/movie/{title}', name: 'api_movie')]
-    public function apiMovie(string $title): Response
+    #[Route('/api/movie', name: 'api_movie')]
+    public function apiMovie(MovieRepository $movieRepository): Response
     {
-        return new JsonResponse('hello ' . $title);
+        // Get the first page of movies
+        $paginatedResult = $movieRepository->getPaginatedMovies(1);
+        // get the total number of movies
+        $totalMovie = count($paginatedResult);
+
+        // Use the Paginator iterator
+        foreach ($paginatedResult as $movie) {
+            $movies = $movie->getTitle();
+        }
+
+        return new JsonResponse($movies);
     }
 
 }
