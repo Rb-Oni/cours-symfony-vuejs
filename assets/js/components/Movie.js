@@ -16,8 +16,8 @@ export default {
         storeMovie() {
             const movie = {title: this.title}
             axios.post("/api/movie/post", movie)
-                .then(response => this.titleId =  response.data.title)
-                .then(result => this.titleId = result.data.title);
+                .then(response => this.titleId = response.data)
+                .then(response => this.title = response.data)
         },
         fetchMovies() {
             axios.get("/api/movie/get")
@@ -43,7 +43,7 @@ export default {
         </div>
         <div>
           <button class="bg-white hover:bg-gray-200 text-black duration-150 font-bold py-2 px-6 shadow rounded-md"
-                  @click="storeMovie">Ajouter
+                  @click="storeMovie(); fetchMovies()">Ajouter
           </button>
         </div>
       </div>
