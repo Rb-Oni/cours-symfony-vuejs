@@ -47,4 +47,15 @@ class MovieController extends AbstractController
         return $this->json($movie);
     }
 
+    #[Route('/api/movie/{movie.id}/put', name: 'api_movie_put')]
+    public function apiMoviePut(Request $request, Movie $movie, MovieRepository $movieRepository): Response
+    {
+        $title = json_decode($request->getContent(), true);
+        $movie->setTitle($title['title']);
+
+        $movieRepository->add($movie, true);
+
+        return $this->json($movie);
+    }
+
 }
