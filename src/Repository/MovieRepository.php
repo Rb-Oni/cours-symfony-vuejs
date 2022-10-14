@@ -6,6 +6,7 @@ use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use JetBrains\PhpStorm\ArrayShape;
 
 /**
  * @extends ServiceEntityRepository<Movie>
@@ -60,19 +61,25 @@ class MovieRepository extends ServiceEntityRepository
         return $moviesArray;
     }
 
-    public function getPaginatedMovies($page = 1, $moviesPerPage = 10)
+    public function getPaginatedMovies($page = 1, $moviesPerPage = 10): array
     {
-        $query = $this->createQueryBuilder('m')
+        $firstResult = $moviesPerPage * ($page - 1);
+
+        $movies = $this->createQueryBuilder('m')
             ->orderBy('m.id', 'DESC')
-            ->getQuery();
+            ->setFirstResult($firstResult)
+            ->setMaxResults($moviesPerPage)
+            ->getQuery()
+            ->getResult();
 
-        $paginator = new Paginator($query);
-
-        $paginator->getQuery()
-            ->setFirstResult($moviesPerPage * ($page - 1))
-            ->setMaxResults($moviesPerPage);
-
-        return $paginator;
+        return [
+            "total" => $this->count([]),
+            "list" => $movies,
+            "page" => $page,
+            "min" => $firstResult,
+            "max" => $firstResult + min($moviesPerPage, count($movies)),
+            "perPage" => $moviesPerPage
+        ];
 
     }
 

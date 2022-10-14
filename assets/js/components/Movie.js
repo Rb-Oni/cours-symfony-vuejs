@@ -20,14 +20,19 @@ export default {
         storeMovie() {
             const movie = {title: this.addTitle};
             axios.post("/api/movie/post", movie)
-                .then(response => this.title = response.data)
-                .then(response => this.addTitle = response.data);
+                .then((response) => {
+                    this.movies.push({
+                        id: response.id,
+                        title: response.title
+                    });
+                });
         },
         updateMovie() {
             const element = document.querySelector('#put-request');
             const movie = {title: this.title};
-            axios.put(`/api/movie/${this.movies.id}/put`, movie)
-                .then(response => element.innerHTML = response.data.title);
+            axios.put('/api/movie/put/' + this.movies.id, movie)
+                .then(response => this.title = response.data)
+                .then(response => console.log(response.data));
         },
     },
     components: {},
@@ -53,7 +58,7 @@ export default {
         </div>
         <div>
           <button class="bg-white hover:bg-gray-200 text-black duration-150 font-bold py-2 px-6 shadow rounded-md"
-                  @click="storeMovie(); fetchMovies()">Ajouter
+                  @click="storeMovie();">Ajouter
           </button>
         </div>
       </div>

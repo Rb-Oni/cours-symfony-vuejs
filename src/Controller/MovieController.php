@@ -21,18 +21,7 @@ class MovieController extends AbstractController
     #[Route('/api/movie/get', name: 'api_movie_get')]
     public function apiMovieGet(MovieRepository $movieRepository): Response
     {
-        // Get the first page of movies
-        $paginatedResult = $movieRepository->getPaginatedMovies(1);
-        // get the total number of movies
-        $totalMovie = count($paginatedResult);
-
-        $movies = [];
-        // Use the Paginator iterator
-        foreach ($paginatedResult as $movie) {
-            $movies[] = $movie->getTitle();
-        }
-
-        return new JsonResponse($movies);
+        return $this->json($movieRepository->getPaginatedMovies(1));
     }
 
     #[Route('/api/movie/post', name: 'api_movie_post')]
@@ -47,7 +36,7 @@ class MovieController extends AbstractController
         return $this->json($movie);
     }
 
-    #[Route('/api/movie/{movie.id}/put', name: 'api_movie_put')]
+    #[Route('/api/movie/put/{id}', name: 'api_movie_put')]
     public function apiMoviePut(Request $request, Movie $movie, MovieRepository $movieRepository): Response
     {
         $title = json_decode($request->getContent(), true);
