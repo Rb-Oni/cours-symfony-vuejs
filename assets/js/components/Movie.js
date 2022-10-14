@@ -41,7 +41,7 @@ export default {
       <h2 class="mb-4 text-3xl font-bold">Titles : </h2>
       <ul class="flex flex-col gap-4">
         <li v-for="movie in movies" :key="movie.id">
-          <span class="text-2xl">{{ movie }}</span>
+          <span class="text-2xl">{{ movie.title }}</span>
           <input type="text" class="text-black mx-4" v-model="movie.title"/>
           <button class="bg-orange-500 hover:bg-orange-700 duration-150 font-bold py-2 px-6 shadow rounded-md"
                   @click="updateMovie()">Modifier

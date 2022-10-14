@@ -21,7 +21,10 @@ class MovieController extends AbstractController
     #[Route('/api/movie/get', name: 'api_movie_get')]
     public function apiMovieGet(MovieRepository $movieRepository): Response
     {
-        return $this->json($movieRepository->getPaginatedMovies(1));
+        $movies = $movieRepository->getPaginatedMovies();
+        $movies = $movies['list'];
+
+        return $this->json($movies);
     }
 
     #[Route('/api/movie/post', name: 'api_movie_post')]
