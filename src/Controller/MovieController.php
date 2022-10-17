@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Movie;
 use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,10 +20,7 @@ class MovieController extends AbstractController
     #[Route('/api/movie/get', name: 'api_movie_get')]
     public function apiMovieGet(MovieRepository $movieRepository): Response
     {
-        $movies = $movieRepository->getPaginatedMovies();
-        $movies = $movies['list'];
-
-        return $this->json($movies);
+        return $this->json($movieRepository->getPaginatedMovies());
     }
 
     #[Route('/api/movie/post', name: 'api_movie_post')]
