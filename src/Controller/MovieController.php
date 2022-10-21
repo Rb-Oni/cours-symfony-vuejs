@@ -69,7 +69,7 @@ class MovieController extends AbstractController
      * @param MovieRepository $movieRepository
      * @return Response
      */
-    #[Route('/api/movie/delete/{id}', name: 'api_movie_delete')]
+    #[Route('/api/movie/delete', name: 'api_movie_delete')]
     public function delete(Movie $movie, MovieRepository $movieRepository): Response
     {
         $movieRepository->remove($movie, true);

@@ -17,25 +17,30 @@ export default {
 	},
 	methods: {
 		fetchMovies() {
-			return axios.get("/api/movie/get")
+			return axios.get('/api/movie/get')
 				.then(response => this.movies = response.data);
 		},
 		storeMovie() {
-			axios.post("/api/movie/post", this.form.add)
+			axios.post('/api/movie/post', this.form.add)
 				.then((response) => {
-					this.$refs.addInput.value = "";
 					this.movies.list.unshift(response.data);
+				})
+				.then(() => {
+					this.$refs.addInput.value = null;
 				});
 		},
 		updateMovie(movie) {
 			console.log(movie);
-			axios.put('/api/movie/put/' + this.movies.id)
+			axios.put('/api/movie/put/', {movie})
 				.then((response) => {
 					this.movies.list = response.data;
 				});
 		},
 		deleteMovie(id) {
-			axios.delete('/api/movie/delete/' + id)
+			axios.delete('/api/movie/delete/',
+				{
+					id: id
+				})
 				.then((response) => {
 					this.movies.list.splice(id, 1);
 				});
@@ -50,7 +55,7 @@ export default {
           <span class="text-2xl">{{ movie.title }}</span>
           <input type="text" class="text-black mx-4" v-model="movie.title"/>
           <button class="bg-orange-500 hover:bg-orange-700 duration-150 font-bold py-2 px-6 shadow rounded-md"
-                  @click="updateMovie(movie)">Modifier
+                  @click="updateMovie(movie.id)">Modifier
           </button>
           <button class="bg-red-500 hover:bg-red-700 duration-150 font-bold py-2 px-6 shadow rounded-md"
                   @click="deleteMovie(movie.id)">Supprimer
