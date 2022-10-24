@@ -74,7 +74,7 @@ class MovieController extends AbstractController
     {
         $movieRepository->remove($movie, true);
 
-        return $this->json($movieRepository->getPaginatedMovies());
+        return $this->json($movie);
     }
 
 }
