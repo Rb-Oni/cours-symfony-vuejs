@@ -8,8 +8,11 @@ export default {
 			form: {
 				add: {
 					title: "",
+				},
+				update: {
+					title: "",
 				}
-			},
+			}
 		};
 	},
 	mounted() {
@@ -30,7 +33,7 @@ export default {
 				});
 		},
 		updateMovie(id) {
-			axios.put('/api/movie/put/', +id)
+			axios.put('/api/movie/put/' + id, this.form.update)
 				.then((response) => {
 					this.movies = response.data;
 				});
@@ -49,7 +52,7 @@ export default {
       <ul class="flex flex-col gap-4">
         <li v-for="movie in movies.list" :key="movie.id">
           <span class="text-2xl">{{ movie.title }}</span>
-          <input type="text" class="text-black mx-4" v-model="movie.title"/>
+          <input type="text" class="text-black mx-4" v-model="form.update.title"/>
           <button class="bg-orange-500 hover:bg-orange-700 duration-150 font-bold py-2 px-4 shadow rounded-md"
                   @click="updateMovie(movie.id)">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
