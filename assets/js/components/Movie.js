@@ -37,12 +37,9 @@ export default {
 				});
 		},
 		deleteMovie(id) {
-			axios.delete('/api/movie/delete/',
-				{
-					id: id
-				})
+			axios.delete('/api/movie/delete/' + id)
 				.then((response) => {
-					this.movies.list.splice(id, 1);
+					this.movies = response.data;
 				});
 		},
 	},
