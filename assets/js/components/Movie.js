@@ -29,11 +29,10 @@ export default {
 					this.$refs.addInput.value = null;
 				});
 		},
-		updateMovie(movie) {
-			console.log(movie);
-			axios.put('/api/movie/put/', {movie})
+		updateMovie(id) {
+			axios.put('/api/movie/put/', + id)
 				.then((response) => {
-					this.movies.list = response.data;
+					this.movies = response.data;
 				});
 		},
 		deleteMovie(id) {
