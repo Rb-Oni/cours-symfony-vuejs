@@ -35,7 +35,14 @@ export default {
 		updateMovie(id) {
 			axios.put('/api/movie/put/' + id, this.form.update)
 				.then((response) => {
-					this.movies = response.data;
+					this.movies.list = this.movies.list.map((movie) => {
+
+						if (movie.id === response.data.id) {
+							movie.title = response.data.title;
+						}
+
+						return movie;
+					});
 				});
 		},
 		deleteMovie(id) {
@@ -45,12 +52,17 @@ export default {
 				});
 		},
 	},
+	computed: {
+		moviesList() {
+			return this.movies.list;
+		}
+	},
 	components: {},
 	template: `
       <section class="bg-blue-500 text-white py-6">
       <h2 class="mb-4 text-3xl font-bold">Titles : </h2>
       <ul class="flex flex-col gap-4">
-        <li v-for="movie in movies.list" :key="movie.id">
+        <li v-for="movie in moviesList" :key="movie.id">
           <span class="text-2xl">{{ movie.title }}</span>
           <input type="text" class="text-black mx-4" v-model="form.update.title"/>
           <button class="bg-orange-500 hover:bg-orange-700 duration-150 font-bold py-2 px-4 shadow rounded-md"
