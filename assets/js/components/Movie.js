@@ -48,9 +48,7 @@ export default {
 		deleteMovie(id) {
 			axios.delete('/api/movie/delete/' + id)
 				.then((response) => {
-					this.movies.list = this.movies.list.filter((movie) => {
-						return movie.id !== id;
-					});
+					this.movies.list = this.movies.list.filter(movie => movie.id !== id);
 				});
 		},
 	},
